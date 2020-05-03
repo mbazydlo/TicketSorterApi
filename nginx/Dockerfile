@@ -1,4 +1,4 @@
-FROM "3.7"
+FROM nginx
 
 RUN rm /etc/nginx/conf.d/default.conf
 
