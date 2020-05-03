@@ -8,7 +8,10 @@ def sendTickets():
     ticket_unsorted = request.get_json()
     path = Sorter(ticket_unsorted).printNiceTickets()
 
-    return ({'response': 'DONE'})
+    if path:
+        return jsonify(path)
+    else:
+        return jsonify({'response': 'No tickets or tickets with no connection'})
     
 if __name__ == '__main__':
     app.run(debug=True)

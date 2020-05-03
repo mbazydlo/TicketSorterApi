@@ -50,7 +50,7 @@ class ResponseTest(unittest.TestCase):
     
         response = self.app.post('/tickets', headers={"Content-Type": "application/json"}, data=tickets)
 
-        self.assertEqual('Wrong tickets', response.json['response'])
+        self.assertEqual('No tickets or tickets with no connection', response.json['response'])
 
     # Case of proper list - correct data.
     def test_correct_data(self):
@@ -106,4 +106,4 @@ class ResponseTest(unittest.TestCase):
         tickets = json.dumps([])
         response = self.app.post('/tickets', headers={"Content-Type": "application/json"}, data=tickets)
 
-        self.assertEqual('Wrong tickets', response.json['response'])
+        self.assertEqual('No tickets or tickets with no connection', response.json['response'])
