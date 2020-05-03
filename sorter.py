@@ -48,3 +48,28 @@ class Sorter:
 
             
         return start_from_ticket[0], finish_on_ticket[0]
+
+    def makeConnections(self):
+        try: 
+            start_point, finish_point = self.journeyStartEnd()
+
+            # Finding tickets that are not first in the path.
+            other_tickets = [ticket for ticket in self.tickets if ticket is not start_point]
+
+            # Initializing list with very first ticket.
+            path = [start_point]
+
+            while 1==1:
+                for ticket in other_tickets:
+                    # Adding ticket to the path based on start - finish connection.
+                    if ticket['start'] == path[-1]['finish']:
+                        path.append(ticket)
+
+                # Break loop if final ticket joins the path.
+                if finish_point in path:
+                    break
+
+            return path
+        except:
+            # In case of incorrect input (no tickets or tickets without connection)
+            return None
