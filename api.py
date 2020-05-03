@@ -6,8 +6,7 @@ app = Flask(__name__)
 @app.route('/tickets', methods=['POST'])
 def sendTickets():
     ticket_unsorted = request.get_json()
-    path = Sorter(ticket_unsorted).makeConnections()
-
+    path = Sorter(ticket_unsorted).printNiceTickets()
 
     return ({'response': 'DONE'})
     

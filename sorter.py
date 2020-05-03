@@ -73,3 +73,49 @@ class Sorter:
         except:
             # In case of incorrect input (no tickets or tickets without connection)
             return None
+
+    def printNiceTickets(self):
+        number = 1
+
+        ready_tickets = self.makeConnections()
+        nice_list_of_tickets = list()
+
+        # In case of incorrect input (no tickets or tickets without connection)
+        if not ready_tickets:
+            return None
+
+
+        # Creating final list, depending on mean of transport.
+        for ticket in ready_tickets:
+            if ticket['mean_of_transport'] == 'bus':
+                current_ticket = f"{number}. Take bus {ticket['transport_number']} from {ticket['start']} to {ticket['finish']}."
+                try:
+                    seat = f" Sit in {ticket['seat_assigment']}"
+                    current_ticket += seat
+                except:
+                    current_ticket += ' No seat assigned'
+                nice_list_of_tickets.append(current_ticket)
+                
+            elif ticket['mean_of_transport'] == 'train':
+                current_ticket = f"{number}. Take train {ticket['transport_number']} from {ticket['start']} to {ticket['finish']}."
+                try:
+                    seat = f" Sit in {ticket['seat_assigment']}"
+                    current_ticket += seat
+                except:
+                    current_ticket += ' No seat assigned'
+                nice_list_of_tickets.append(current_ticket)
+
+            elif ticket['mean_of_transport'] == 'flight':
+                current_ticket = f"{number}. From {ticket['start']}, take flight {ticket['transport_number']} to {ticket['finish']}."
+                current_ticket += f" Gate {ticket['gate']}. Seat {ticket['seat_assigment']}."
+
+                try:
+                    current_ticket += f" Baggage drop at ticket counter {ticket['baggage']}."
+                except:
+                    current_ticket += ' Baggage will we automatically transferred from your last leg.'
+
+                nice_list_of_tickets.append(current_ticket)
+
+            number += 1
+        nice_list_of_tickets.append(f'{number}. You have arrived at your final destination.')
+        return nice_list_of_tickets
