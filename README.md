@@ -108,7 +108,7 @@ docker-compose build
 
 Run docker-compose:
 ```
-docker-compose run
+docker-compose up
 ```
 
 ### Running tests
