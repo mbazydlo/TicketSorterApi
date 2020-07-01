@@ -1,7 +1,4 @@
-# ECUMENE TEST
-
-Completed task given by Ecumene Ventures.
-Procect contains unit tests and Docker.
+# TRIP SORTER
 
 
 Content of challenge:
